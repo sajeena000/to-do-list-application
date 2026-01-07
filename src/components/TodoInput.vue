@@ -3,11 +3,16 @@ import { ref } from 'vue'
 
 const emit = defineEmits(['add-todo'])
 const newTodo = ref('')
+const priority = ref('low')
+const dueDate = ref('') 
 
 const handleSubmit = () => {
   if (newTodo.value.trim()) {
-    emit('add-todo', newTodo.value)
+    emit('add-todo', newTodo.value, priority.value, dueDate.value)
+    
     newTodo.value = ''
+    priority.value = 'low'
+    dueDate.value = ''
   }
 }
 </script>
@@ -20,6 +25,20 @@ const handleSubmit = () => {
       placeholder="What needs to be done?" 
       class="cute-input"
     />
+    
+    <input 
+      type="date" 
+      v-model="dueDate" 
+      class="date-select"
+      title="Set Due Date"
+    />
+
+    <select v-model="priority" class="priority-select" title="Set Priority">
+      <option value="low">🟢 Low</option>
+      <option value="medium">🟡 Med</option>
+      <option value="high">🔴 High</option>
+    </select>
+
     <button @click="handleSubmit" class="cute-btn">Add</button>
   </div>
 </template>
@@ -29,6 +48,7 @@ const handleSubmit = () => {
   display: flex;
   padding: 1.5rem 2rem;
   gap: 10px;
+  align-items: center;
 }
 
 .cute-input {
@@ -49,11 +69,33 @@ const handleSubmit = () => {
   box-shadow: 0 0 10px rgba(255, 154, 158, 0.3);
 }
 
+.priority-select, .date-select {
+  padding: 0 10px;
+  height: 44px; 
+  border: 2px solid #ffdde1;
+  border-radius: 15px;
+  background: white;
+  color: #666;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.date-select {
+  font-size: 0.9rem;
+  width: 130px;
+}
+
+.priority-select:focus, .date-select:focus {
+  border-color: #ff9a9e;
+}
+
 .cute-btn {
-  background-color: #6a82fb; 
+  background-color: #6a82fb;
   color: white;
   border: none;
   padding: 0 25px;
+  height: 44px; 
   border-radius: 15px;
   font-weight: 600;
   font-family: inherit;
@@ -64,9 +106,5 @@ const handleSubmit = () => {
 .cute-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(106, 130, 251, 0.4);
-}
-
-.cute-btn:active {
-  transform: translateY(0);
 }
 </style>

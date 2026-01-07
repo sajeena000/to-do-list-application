@@ -31,10 +31,12 @@ export function useTodos() {
   const activeCount = computed(() => todos.value.filter(t => !t.done).length)
   const completedCount = computed(() => todos.value.filter(t => t.done).length)
 
-  const addTodo = (text) => {
+  const addTodo = (text, priority = 'low', dueDate = '') => {
     todos.value.push({
       id: Date.now(),
       text,
+      priority, 
+      dueDate, 
       done: false
     })
   }
@@ -58,11 +60,14 @@ export function useTodos() {
   const setFilter = (filter) => {
     currentFilter.value = filter
   }
-
+  
   const clearCompleted = () => {
     todos.value = todos.value.filter(t => !t.done)
   }
-
+  const clearAll = () => {
+    todos.value = []
+  }
+  
     return {
     todos, 
     currentFilter,
@@ -75,6 +80,7 @@ export function useTodos() {
     toggleTodo,
     removeTodo,
     setFilter,
-    clearCompleted
+    clearCompleted,
+    clearAll
   }
 }

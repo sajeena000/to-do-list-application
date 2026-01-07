@@ -65,6 +65,11 @@ const finishEdit = () => {
     emit('update', props.todo.id, editText.value)
   }
 }
+const formatDate = (dateString) => {
+  if (!dateString) return ''
+  const options = { month: 'short', day: 'numeric' }
+  return new Date(dateString).toLocaleDateString(undefined, options)
+}
 
 const cancelEdit = () => {
   isEditing.value = false
@@ -89,7 +94,16 @@ const cancelEdit = () => {
       <div class="checkbox" @click.stop="handleToggle">
         <span v-if="todo.done">🌸</span>
       </div>
+      
+      <span class="priority-badge" :class="todo.priority">
+        {{ todo.priority === 'high' ? '🔴' : todo.priority === 'medium' ? '🟡' : '🟢' }}
+      </span>
+
       <span class="text" @dblclick="startEdit">{{ todo.text }}</span>
+
+      <span v-if="todo.dueDate" class="due-date">
+        📅 {{ formatDate(todo.dueDate) }}
+      </span>
     </div>
 
     <div class="actions">
@@ -109,6 +123,17 @@ li {
   min-height: 70px;
   background: white;
 }
+.priority-badge {
+  font-size: 0.8rem;
+  margin-right: 8px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+}
+
+.priority-badge.high { background-color: #ffe5e5; }
+.priority-badge.medium { background-color: #fff9c4; }
+.priority-badge.low { background-color: #e8f5e9; }
 
 .item-content {
   display: flex;
@@ -166,4 +191,15 @@ li {
 .edit-btn:hover { opacity: 1; }
 .delete-btn { color: #ff9a9e; font-size: 2rem; line-height: 1; }
 .delete-btn:hover { color: #ff1493; }
+
+.due-date {
+  font-size: 0.85rem;
+  color: #999;
+  background: #fdf0f6; 
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: auto;
+  margin-right: 10px;
+  white-space: nowrap;
+}
 </style>

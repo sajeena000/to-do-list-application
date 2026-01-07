@@ -16,7 +16,8 @@ const {
   toggleTodo,
   updateTodo,
   setFilter,
-  clearCompleted
+  clearCompleted,
+  clearAll
 } = useTodos()
 </script>
 
@@ -59,7 +60,7 @@ const {
         <p class="subtitle">Let's make today magical! ✨</p>
       </div>
       
-      <TodoInput @add-todo="addTodo" />
+<TodoInput @add-todo="(text, priority, date) => addTodo(text, priority, date)" />
       
       <TodoFilters 
         :current-filter="currentFilter"
@@ -78,6 +79,7 @@ const {
         :active-count="activeCount"
         :completed-count="completedCount"
         @clear-completed="clearCompleted"
+        @clear-all="clearAll" 
       />
     </div>
   </div>
