@@ -4,7 +4,9 @@ import { ref } from 'vue'
 const emit = defineEmits(['add-todo'])
 const newTodo = ref('')
 const priority = ref('low')
-const dueDate = ref('') 
+const dueDate = ref('')
+
+const minDate = new Date().toISOString().split('T')[0]
 
 const handleSubmit = () => {
   if (newTodo.value.trim()) {
@@ -29,6 +31,7 @@ const handleSubmit = () => {
     <input 
       type="date" 
       v-model="dueDate" 
+      :min="minDate"
       class="date-select"
       title="Set Due Date"
     />
@@ -95,7 +98,7 @@ const handleSubmit = () => {
   color: white;
   border: none;
   padding: 0 25px;
-  height: 44px; 
+  height: 44px;
   border-radius: 15px;
   font-weight: 600;
   font-family: inherit;
