@@ -29,10 +29,11 @@ defineEmits(['toggle-todo', 'remove-todo', 'update-todo'])
 
 <style scoped>
 .list-container {
-  padding: 1rem 3rem;
-  flex: 1;
-  overflow-y: auto;
-  min-height: 0;
+  padding: 1rem 3rem; 
+  flex: 1;          
+  overflow-y: auto;  
+  overflow-x: hidden; 
+  min-height: 0;     
   display: flex;
   flex-direction: column;
   position: relative; 
@@ -53,7 +54,8 @@ defineEmits(['toggle-todo', 'remove-todo', 'update-todo'])
   font-size: 1.2rem;
 }
 
-.list-move,
+
+.list-move, 
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -62,7 +64,7 @@ defineEmits(['toggle-todo', 'remove-todo', 'update-todo'])
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(30px); 
 }
 
 .list-leave-active {
@@ -70,12 +72,21 @@ defineEmits(['toggle-todo', 'remove-todo', 'update-todo'])
   width: 100%;
 }
 
-.list-container::-webkit-scrollbar { width: 8px; }
-.list-container::-webkit-scrollbar-track { background: #fff0f5; }
-.list-container::-webkit-scrollbar-thumb {
-  background-color: #ffb3d9;
-  border-radius: 10px;
-  border: 2px solid #fff0f5;
+.list-container::-webkit-scrollbar { 
+  width: 8px; 
 }
-.list-container::-webkit-scrollbar-thumb:hover { background-color: #ff9a9e; }
+
+.list-container::-webkit-scrollbar-track { 
+  background: #fff0f5; 
+}
+
+.list-container::-webkit-scrollbar-thumb {
+  background-color: #ffb3d9; 
+  border-radius: 10px;
+  border: 2px solid #fff0f5; 
+}
+
+.list-container::-webkit-scrollbar-thumb:hover { 
+  background-color: #ff9a9e; 
+}
 </style>
