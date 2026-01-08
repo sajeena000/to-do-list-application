@@ -119,4 +119,24 @@ button {
   background: #ffe5e5;
   color: #d32f2f;
 }
+
+@media (max-width: 600px) {
+  .stats-container {
+    flex-direction: column; 
+    gap: 15px;
+    padding: 15px 1rem;
+    height: auto;
+  }
+
+  .counts {
+    width: 100%;
+    justify-content: space-around; 
+    font-size: 0.8rem;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: center; 
+  }
+}
 </style>
