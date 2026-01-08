@@ -1,6 +1,7 @@
 # Vue 3 Todo List Application
 
 A responsive and interactive Todo List application built with Vue 3 (Composition API) and Vite.
+
 Live Link: https://sajeena000.github.io/to-do-list-application/
 
 ## Features
