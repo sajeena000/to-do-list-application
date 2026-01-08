@@ -222,4 +222,34 @@ li {
   border: 1px solid #ffcdd2;
   font-weight: bold;
 }
+
+@media (max-width: 600px) {
+  li {
+    padding: 12px 10px; 
+  }
+
+  .item-content {
+    flex-wrap: wrap; 
+    gap: 8px;
+  }
+
+  .text {
+    font-size: 1rem; 
+    width: 100%; 
+  }
+
+  .priority-badge {
+    order: -1;
+  }
+
+  .due-date {
+    font-size: 0.75rem;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+  
+  .actions {
+    align-self: flex-start; 
+  }
+}
 </style>
