@@ -258,4 +258,31 @@ const {
 .progress-fill.full {
   background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
 }
+
+@media (max-width: 600px) {
+  .app {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .container {
+    width: 95%;       
+    height: 90vh;     
+    min-height: auto;  
+    border-width: 2px; 
+  }
+
+  .header {
+    padding: 1.5rem 1rem; 
+  }
+
+  .title {
+    font-size: 2rem; 
+  }
+
+  .cat-body {
+    transform: scale(0.8); 
+    transform-origin: bottom center;
+  }
+}
 </style>
