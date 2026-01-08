@@ -110,4 +110,23 @@ const handleSubmit = () => {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(106, 130, 251, 0.4);
 }
+
+@media (max-width: 600px) {
+  .input-group {
+    flex-direction: column; 
+    gap: 12px;
+    padding: 1rem;
+  }
+
+  .cute-input, 
+  .date-select, 
+  .priority-select, 
+  .cute-btn {
+    width: 100%;
+    height: 44px;
+    font-size: 1rem; 
+  }
+  
+  .cute-input { border-radius: 12px; }
+}
 </style>
