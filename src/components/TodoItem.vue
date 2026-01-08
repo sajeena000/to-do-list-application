@@ -25,7 +25,6 @@ const handleToggle = async () => {
     showCancelButton: true,
     confirmButtonText: 'Yes',     
     cancelButtonText: 'No',
-
     confirmButtonColor: '#ff9a9e', 
     cancelButtonColor: '#d33',
     background: '#fff0f5',    
@@ -65,15 +64,23 @@ const finishEdit = () => {
     emit('update', props.todo.id, editText.value)
   }
 }
-const formatDate = (dateString) => {
+
+const cancelEdit = () => {
+  isEditing.value = false
+  editText.value = props.todo.text
+}
+
+ const formatDate = (dateString) => {
   if (!dateString) return ''
   const options = { month: 'short', day: 'numeric' }
   return new Date(dateString).toLocaleDateString(undefined, options)
 }
 
-const cancelEdit = () => {
-  isEditing.value = false
-  editText.value = props.todo.text
+const isOverdue = (dateString) => {
+  if (!dateString) return false
+  const today = new Date().setHours(0, 0, 0, 0)
+  const due = new Date(dateString).setHours(0, 0, 0, 0)
+  return due < today
 }
 </script>
 
@@ -101,8 +108,13 @@ const cancelEdit = () => {
 
       <span class="text" @dblclick="startEdit">{{ todo.text }}</span>
 
-      <span v-if="todo.dueDate" class="due-date">
-        📅 {{ formatDate(todo.dueDate) }}
+      <span 
+        v-if="todo.dueDate" 
+        class="due-date"
+        :class="{ 'overdue': !todo.done && isOverdue(todo.dueDate) }"
+      >
+        {{ !todo.done && isOverdue(todo.dueDate) ? '⚠️' : '📅' }}
+        {{ formatDate(todo.dueDate) }}
       </span>
     </div>
 
@@ -123,6 +135,7 @@ li {
   min-height: 70px;
   background: white;
 }
+
 .priority-badge {
   font-size: 0.8rem;
   margin-right: 8px;
@@ -201,5 +214,12 @@ li {
   margin-left: auto;
   margin-right: 10px;
   white-space: nowrap;
+}
+
+.due-date.overdue {
+  color: #d32f2f; 
+  background: #ffebee;
+  border: 1px solid #ffcdd2;
+  font-weight: bold;
 }
 </style>
