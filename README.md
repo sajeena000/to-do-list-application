@@ -4,11 +4,13 @@ A responsive and interactive Todo List application built with Vue 3 (Composition
 
 ## Features
 
-*   **Task Management:** Add, edit, remove, and toggle task completion status.
-*   **Filtering:** View tasks by All, Active, or Completed status.
-*   **Data Persistence:** Tasks are saved automatically to LocalStorage.
-*   **Interactive UI:** Includes confirmation dialogs for task changes and confetti effects upon completion.
-*   **Auto-Sorting:** Active tasks prioritize to the top, while completed tasks move to the bottom.
+*   **Task Management:** Add, edit, remove, and auto-sort tasks (Active top / Completed bottom).
+*   **Priority Levels:** Visual badges to indicate importance (🔴 High, 🟡 Medium, 🟢 Low).
+*   **Due Dates & Warnings:** Set deadlines; dates turn red with warning icons when overdue.
+*   **Gamified Progress:** A visual "XP bar" that fills up as you complete tasks.
+*   **Bulk Actions:** Includes a "Delete All" button to reset the list instantly.
+*   **Filtering & Persistence:** Filter by All/Active/Completed and auto-save to LocalStorage.
+*   **Interactive UI:** Mobile-responsive design, SweetAlert2 confirmations, and confetti celebrations.
 
 ## Tech Stack
 
