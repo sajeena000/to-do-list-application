@@ -67,8 +67,13 @@ export function useTodos() {
   const clearAll = () => {
     todos.value = []
   }
-  
+  const progressPercentage = computed(() => {
+    if (todos.value.length === 0) return 0
+    return Math.round((todos.value.filter(t => t.done).length / todos.value.length) * 100)
+  })
+
     return {
+    progressPercentage,
     todos, 
     currentFilter,
     filteredTodos,
